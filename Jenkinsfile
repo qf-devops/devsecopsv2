@@ -13,7 +13,7 @@ pipeline {
 
                 withCredentials([string(credentialsId: 'NEXUS_PASSWORD', variable: 'NEXUS_PASSWORD')]) {
                     sh 'sed  -i "s/passvar/$NEXUS_PASSWORD/g" settings.xml'
-                    withSonarQubeEnv() {
+                    withSonarQubeEnv('sonarqube')  {
                       sh "mvn clean verify sonar:sonar -Dsonar.projectKey=devsecopsapp -Dsonar.projectName='devsecopsapp'"
                     }
                     sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
