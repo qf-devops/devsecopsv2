@@ -9,7 +9,7 @@
     <server>
       <id>dhl-snapshots</id>
       <username>dhluser</username>
-      <password>dhluser</password>
+      <password>passvar</password>
     </server>
   </servers>
 
