@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label  'maven-label' }
 
     tools {
         maven "M3"
@@ -13,7 +13,6 @@ pipeline {
 
                 withCredentials([string(credentialsId: 'NEXUS_PASSWORD', variable: 'NEXUS_PASSWORD')]) {
                 sh 'sed  -i "s/passvar/$NEXUS_PASSWORD/g" settings.xml'
-                sh "cat settings.xml"
                 sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
                 }
 
