@@ -22,7 +22,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'NEXUS_PASSWORD', variable: 'NEXUS_PASSWORD')]) {
                 sh 'sed  -i "s/passvar/$NEXUS_PASSWORD/g" settings.xml'   
-                sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
+                sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean package"
                 }
             }
             post {
