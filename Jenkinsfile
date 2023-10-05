@@ -14,7 +14,7 @@ pipeline {
         stage('SonarScanner'){
             steps {
              withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-                  sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=devsecopsapp  -Dsonar.host.url=http://18.116.39.123:9000/  -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectName=devsecopsapp"
+                  sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=devsecopsapp  -Dsonar.host.url=http://172.31.16.115:9000/  -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectName=devsecopsapp"
                 }
             }
         }
