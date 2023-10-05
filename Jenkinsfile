@@ -13,9 +13,14 @@ pipeline {
         }
         stage('SonarScanner'){
             steps {
-             withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-                  sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=devsecopsapp  -Dsonar.host.url=http://172.31.16.115:9000/  -Dsonar.token=${SONAR_TOKEN} -Dsonar.projectName=devsecopsapp"
-                }
+                sh "mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=vulnado \
+  -Dsonar.projectName=vulnado \
+  -Dsonar.host.url=http://13.59.208.70:9000 \
+  -Dsonar.token=sqp_d748ee96976aefc33dd95cd5174c9849105445c0"
+            //  withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+            //       sh "mvn verify sonar:sonar -Dsonar.projectKey=devsecopsapp  -Dsonar.host.url=http://172.31.16.115:9000/  -Dsonar.login=sqp_d748ee96976aefc33dd95cd5174c9849105445c0 -Dsonar.projectName=devsecopsapp"
+            //     }
             }
         }
         stage('buildandupload'){
